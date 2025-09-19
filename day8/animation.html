@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>animation truck</title>
+</head>
+<style>
+.box{
+width: 100px;
+height: 100px;
+background-color: yellowgreen;
+margin: 10vh auto;
+border-radius: 55%;
+transition: transform 3s ease-in-out, box-shadow 3s ease, background-color 4s ease-in-out;
+       }
+       .box:hover{
+           transform: scale(1.5) ;
+           box-shadow: 0px 0px 500px red;
+           background-color: rgb(17, 11, 11);
+
+}
+.box2{
+    width: 100px;
+    height: 200px;
+    background-color: limegreen;
+    margin:10vh auto;
+    border-radius:45%;
+    transition: transform 3s ease-in-out, box-shadow 3s ease, background-color 4s ease-in-out;
+       }
+       .box2:hover{
+           transform: scale(1.5) ;
+           box-shadow: 0px 0px 500px red;
+           background-color: rgb(17, 11, 11);
+
+}
+</style>
+<body>
+    <div class="box"> </div>
+<div class="box2"></div>
+<img src="windgif.gif" alt="gif" class="img">
+    
+</body>
+</html>

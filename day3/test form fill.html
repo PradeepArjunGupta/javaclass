@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>form fill</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+    <fieldset>
+        <legend>Registration fill</legend>
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" required><br>
+        <label for="email">Email</label>
+        <input type="email" id="Email" required><br>
+        <label for="password">password</label>
+        <input type="password" id="pass" required><br>
+        <label for="Age">Age</label>
+        <input type="number" id="Age" min="16" max="60"><br>
+        <label for="LinkedIn">LinkedIn urls</label>
+        <input type="url" id="LinkedIn"><br>
+        <label for="job">Are u fresher?</label>
+        <input type="checkbox" id="job"><br>
+        <label for="expert">Are u expert</label>
+        <input type="checkbox" id="expert"><br>
+        <label for="Gender">Gender:</label>
+        <label for="male">Male</label>
+        <input type="radio" id="Male">
+        <label for="Female">Female</label>
+        <input type="radio" id="Female"><br>
+        <label for="DOB">DOB:</label>
+        <input type="date" id="DOB"><br>
+        <label for="state">Choose state:</label>
+        <select id="state">
+            <option value="">select below</option>
+            <option value="Uttar">up</option>
+            <option value="madhya">mp</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="bihar">bihar</option>
+            <option value="otherrs">otherrs</option>
+        </select><br>
+        <!--data list-->
+        <label for="Degree">Degree</label>
+        <input list="course" name="" id="Degree">
+        <datalist id="course">
+            <option value="BCA"></option>
+            <option value="M-tech"></option>
+            <option value="B-tech"></option>
+            <option value="LLB"></option>
+            <option value="otherrs"></option>
+        </datalist>
+        <br>
+        <label for="image">upload file</label>
+        <input type="file"><br>
+        <br>
+        <label for="feedback">FeedBack</label> <br>
+        <textarea  cols="50" rows="5"></textarea>
+            <br>
+        <button>submit</button>
+    </fieldset>
+    </form>
+</body>
+</html>
