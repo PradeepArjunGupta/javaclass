@@ -1,105 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>actors card</title>
-</head>
-
-<body>
-
+    <title>Indian Actors Profile</title>
     <style>
-        .actor-card {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px auto;
-            width: 300px;
-            background: #f9f9f9;
-        }
-
-        .actor-card img {
-            border-radius: 8px;
-            width: 200px;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 12px;
-        }
-
-        .actor-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
+        body { font-family: Arial, sans-serif; }
+        .buttons { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+        button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+        .profile { display: none; border: 1px solid #ccc; padding: 20px; max-width: 350px; }
+        .profile img { width: 120px; height: 150px; object-fit: cover; border-radius: 50%; }
+        .profile h2 { margin: 10px 0 5px; }
+        .profile p { margin: 5px 0; }
     </style>
+</head>
+<body>
+    <div class="buttons">
+        <button onclick="showProfile(0)">Amitabh Bachchan</button>
+        <button onclick="showProfile(1)">Shah Rukh Khan</button>
+        <button onclick="showProfile(2)">Salman Khan</button>
+        <button onclick="showProfile(3)">Aamir Khan</button>
+        <button onclick="showProfile(4)">Ranbir Kapoor</button>
+        <button onclick="showProfile(5)">Hrithik Roshan</button>
+        <button onclick="showProfile(6)">Akshay Kumar</button>
+        <button onclick="showProfile(7)">Ajay Devgn</button>
+        <button onclick="showProfile(8)">Ranveer Singh</button>
+        <button onclick="showProfile(9)">Varun Dhawan</button>
+    </div>
+
+    <div id="profile" class="profile"></div>
+
     <script>
         const actors = [
             {
                 name: "Amitabh Bachchan",
-                img: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Amitabh_Bachchan_2013.jpg",
-                bio: "Legendary Bollywood actor known for his deep voice and versatile roles."
+                age: 81,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Amitabh_Bachchan_2013.jpg"
             },
             {
                 name: "Shah Rukh Khan",
-                img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Shah_Rukh_Khan_grace_the_launch_of_the_new_TV_show_%27TED_Talks_India_Nayi_Soch%27.jpg",
-                bio: "Popularly known as the 'King of Bollywood', famous for romantic roles."
+                age: 58,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Shah_Rukh_Khan_grace_the_launch_of_the_new_TV_show_%27TED_Talks_India_Nayi_Soch%27.jpg"
             },
             {
                 name: "Salman Khan",
-                img: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Salman_Khan_at_the_launch_of_%27Being_Human%27_Electric_Bicycles.jpg",
-                bio: "Known for his action-packed movies and philanthropic work."
+                age: 58,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Salman_Khan_promoting_Bajrangi_Bhaijaan.jpg"
             },
             {
                 name: "Aamir Khan",
-                img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Aamir_Khan_at_the_launch_of_Mission_150.jpg",
-                bio: "Renowned for his perfectionism and impactful films."
+                age: 59,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Aamir_Khan_at_the_launch_of_Satyamev_Jayate.jpg"
             },
             {
                 name: "Ranbir Kapoor",
-                img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Ranbir_Kapoor_promoting_Brahmastra.jpg",
-                bio: "Talented actor from the Kapoor family, known for his versatility."
-            },
-            {
-                name: "Ranveer Singh",
-                img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Ranveer_Singh_promoting_Gully_Boy.jpg",
-                bio: "Energetic performer known for his bold fashion and powerful acting."
+                age: 41,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Ranbir_Kapoor_promoting_Barfi%21.jpg"
             },
             {
                 name: "Hrithik Roshan",
-                img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Hrithik_Roshan_promoting_Super_30.jpg",
-                bio: "Famous for his dancing skills and action roles."
+                age: 50,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Hrithik_Roshan_promoting_Kaabil.jpg"
             },
             {
                 name: "Akshay Kumar",
-                img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Akshay_Kumar_promoting_Pad_Man.jpg",
-                bio: "Known for his action and comedy films, and fitness."
+                age: 56,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Akshay_Kumar_promoting_Rustom.jpg"
             },
             {
                 name: "Ajay Devgn",
-                img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Ajay_Devgn_promoting_Tanhaji.jpg",
-                bio: "Versatile actor known for intense roles and action movies."
+                age: 55,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Ajay_Devgn_promoting_Shivaay.jpg"
             },
             {
-                name: "Rajinikanth",
-                img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Rajinikanth_at_the_launch_of_%27Kaala%27.jpg",
-                bio: "Superstar of Indian cinema, especially Tamil films."
+                name: "Ranveer Singh",
+                age: 38,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Ranveer_Singh_promoting_Gully_Boy.jpg"
+            },
+            {
+                name: "Varun Dhawan",
+                age: 37,
+                photo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Varun_Dhawan_promoting_Badrinath_Ki_Dulhania.jpg"
             }
         ];
 
-        function showActor(index) {
-            for (let i = 0; i < actors.length; i++) {
-                document.getElementById('actor-card-' + i).style.display = 'none';
-            }
-            document.getElementById('actor-card-' + index).style.display = 'flex';
+        function showProfile(index) {
+            const actor = actors[index];
+            const profileDiv = document.getElementById('profile');
+            profileDiv.innerHTML = `
+                <img src="${actor.photo}" alt="${actor.name}">
+                <h2>${actor.name}</h2>
+                <p><strong>Age:</strong> ${actor.age}</p>
+            `;
+            profileDiv.style.display = 'block';
         }
     </script>
-
 </body>
-
 </html>
