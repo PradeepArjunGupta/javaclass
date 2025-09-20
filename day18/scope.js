@@ -29,11 +29,10 @@ if(5>2){
     console.log(b)
 }
 console.log(a)
-console.log(b)
+console.log(b) // not accessible because of const loccal b
 */
-
 // difference 2: 
-
+/*
 let a=5;
 var b=6;
 const c=8;
@@ -48,7 +47,7 @@ add()
 console.log(d)
 console.log(e)
 console.log(f)
-
+*/
 
 // difference 3; 
 /*
@@ -67,7 +66,7 @@ var c=10; // re - declaration is possible
 c="hey";   // re - initialisation is possible
 console.log(c)
 */
-/*
+
 // difference 4: 
 let a=5;
 const b=6;
@@ -87,4 +86,3 @@ console.log("Global scope")
 console.log(a)
 console.log(b)
 console.log(c)
-*/
