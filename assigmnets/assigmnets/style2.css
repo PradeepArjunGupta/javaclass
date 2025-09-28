@@ -1,0 +1,90 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+.header{
+   /* border: 1px solid lightblue; */
+   height: 40px;
+   width: 100%;
+   box-shadow: inset 1px 1px 10px 1px rgb(18, 243, 93);
+   /* background-color: black; */
+   color: rgb(233, 12, 12);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+
+}
+.logo{
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-weight: 600;
+   flex: 2;
+   margin-left: 30px;
+}
+.navbar{
+ flex: 2;
+}
+.nav-items{
+   display: flex;
+   list-style: none;
+   /* justify-content: space-around; */
+   justify-content: right;
+   margin-right: 10px;
+}
+.nav-item{
+   margin-left: 30px;
+}
+.fa-solid{
+   margin-right: 5px;
+   color: rgb(184, 104, 13);
+}
+.nav-fitems{
+   display: flex;
+   justify-content: left;
+   box-shadow: 0px 0px 5px rgb(173, 230, 182);
+   height: 10px;
+   align-items: center;
+}
+.content{
+   height: 100vh;
+   box-shadow: 0px 0px 5px rgb(176, 15, 15);
+   display: flex;
+   margin: 5px;
+}
+.leftnav{
+  /* border: 1px solid black; */
+  box-shadow: 0px 0px 2px rgb(7, 39, 113);
+  flex: 1;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.info{
+  border: 1px solid rgb(13, 203, 20);
+  flex: 3;border-radius: 10px;
+}
+.course-items{
+   display: flex;
+   flex-direction: column;
+   list-style: none;
+   text-align: justify;
+   margin-top: 10vh;
+   padding: 20px;
+}
+.course-item{
+   margin-left: 20%;
+   box-shadow: 0px 0px 3px rgb(11, 129, 7);
+   margin: 10px;
+   text-align: center;
+   padding: 10px;
+   border-radius: 10px;
+   font-weight: 600;
+}
+.info{
+   padding: 30px;
+}
+a{
+   text-decoration: none;
+   color: rgb(14, 72, 219);
+}

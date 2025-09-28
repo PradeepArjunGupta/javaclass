@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="amazon.jpg">
+    <title>online shopping site in India</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --amazon-blue: #131921;
+            --amazon-yellow: #febd69;
+            --amazon-light: #232f3e;
+            --amazon-search: #fff;
+            --amazon-border: #ccc;
+            --amazon-link: #fff;
+            --amazon-hover: #febd69;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        body {
+            background: #e3e6e6;
+        }
+        /* Top Navbar */
+        .navbar {
+            background: var(--amazon-blue);
+            color: var(--amazon-link);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 24px;
+        }
+        .navbar .logo img {
+            height: 36px;
+        }
+        .navbar .location {
+            display: flex;
+            align-items: center;
+            margin-right: 24px;
+            cursor: pointer;
+        }
+        .navbar .location i {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+        .navbar .location span {
+            font-size: 13px;
+            line-height: 1.2;
+        }
+        .navbar .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            margin-right: 24px;
+            min-width: 200px;
+        }
+        .navbar .search-bar select {
+            height: 40px;
+            border: none;
+            background: #f3f3f3;
+            padding: 0 8px;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+            outline: none;
+        }
+        .navbar .search-bar input {
+            height: 40px;
+            border: none;
+            padding: 0 8px;
+            font-size: 16px;
+            flex: 1;
+            outline: none;
+        }
+        .navbar .search-bar button {
+            height: 40px;
+            width: 40px;
+            background: var(--amazon-yellow);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar .search-bar button i {
+            font-size: 20px;
+            color: #333;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .navbar .nav-link {
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            transition: color 0.2s;
+        }
+        .navbar .nav-link span {
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .navbar .nav-link:hover {
+            color: var(--amazon-hover);
+        }
+        .navbar .cart {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 16px;
+        }
+        .navbar .cart i {
+            font-size: 24px;
+            margin-right: 4px;
+        }
+        .navbar .cart span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        /* Second Bar */
+        .sub-navbar {
+            background: var(--amazon-light);
+            color: var(--amazon-link);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            height: 40px;
+            font-size: 15px;
+            gap: 24px;
+        }
+        .sub-navbar .menu {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .sub-navbar .menu i {
+            font-size: 20px;
+            margin-right: 6px;
+        }
+        .sub-navbar .sub-link {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .sub-navbar .sub-link:hover {
+            color: var(--amazon-hover);
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 8px;
+            }
+            .navbar .search-bar {
+                min-width: 120px;
+                margin-right: 8px;
+            }
+            .navbar .nav-links {
+                gap: 12px;
+            }
+            .sub-navbar {
+                font-size: 13px;
+                gap: 12px;
+                padding: 0 8px;
+            }
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+            }
+            .navbar .logo,
+            .navbar .location,
+            .navbar .search-bar,
+            .navbar .nav-links,
+            .navbar .cart {
+                margin: 4px 0;
+            }
+            .navbar .search-bar {
+                margin-right: 0;
+            }
+            .sub-navbar {
+                flex-wrap: wrap;
+                gap: 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/7c2e0e9e2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="amazon logo.jpg" alt="Amazon.in">
+        </div>
+        <div class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Deliver to<br><strong>India</strong></span>
+        </div>
+        <form class="search-bar">
+            <select>
+                <option>All</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Books</option>
+                <option>Home & Kitchen</option>
+            </select>
+            <input type="text" placeholder="Search Amazon.in">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="nav-links">
+            <div class="nav-link">
+                Hello, Sign in<br><span>Account & Lists</span>
+            </div>
+            <div class="nav-link">
+                Returns<br><span>& Orders</span>
+            </div>
+            <div class="nav-link">
+                <span>Try Prime</span>
+            </div>
+        </div>
+        <div class="cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </div>
+    </div>
+    <!-- Second Bar -->
+    <div class="sub-navbar">
+        <div class="menu"><i class="fas fa-bars"></i>All</div>
+        <div class="sub-link">Amazon miniTV</div>
+        <div class="sub-link">Sell</div>
+        <div class="sub-link">Best Sellers</div>
+        <div class="sub-link">Mobiles</div>
+        <div class="sub-link">Today's Deals</div>
+        <div class="sub-link">Customer Service</div>
+        <div class="sub-link">Electronics</div>
+        <div class="sub-link">Prime</div>
+        <div class="sub-link">Fashion</div>
+        <div class="sub-link">Home & Kitchen</div>
+        <div class="sub-link">Amazon Pay</div>
+    </div>
+    <!-- Main Content Placeholder -->
+    <div style="padding:32px; text-align:center;">
+        <h2>Amazon India Homepage</h2>
+        <p>This is a static clone of the Amazon India top navigation bar.<br>
+            Add more sections below as needed.
+        </p>
+    </div>
+</body>
+</html>

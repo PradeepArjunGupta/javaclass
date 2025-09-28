@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Photo Editor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background: offwhite;
+        }
+
+        .sidebar,
+        .controls {
+            width: 250px;
+            background: white;
+            padding: 30px;
+            box-sizing: border-box;
+            border-right: 5px solid orange;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .controls {
+            border-right: none;
+            border-left: 20px solid limegreen;
+        }
+
+        .editor {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: wheat;
+        }
+
+        .image-list img {
+            width: 100%;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 5px solid transparent;
+            border-radius: 20px;
+            transition: border 1s;
+        }
+
+        .image-list img.selected {
+            border: 2px solid #0078d7;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 650px;
+            height: 500px;
+            background: gray;
+
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main-image {
+            width: 98%;
+            height: 98%;
+            object-fit: contain;
+            display: block;
+            border-radius: 20px;
+            filter: none;
+            transition: filter 0.2s;
+        }
+
+        #text-overlay {
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%, -50%);
+            min-width: 120px;
+            min-height: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            outline: none;
+            resize: none;
+            padding: 6px 12px;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #0983e7;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        select,
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .effects-list label {
+            display: inline-block;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: filter 0.2s;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Left Sidebar: Image Panel -->
+    <div class="sidebar">
+        <div class="section-title">Choose Image</div>
+        <div class="image-list">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80"
+                alt="img1" data-index="0">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=500&q=80"
+                alt="img2" data-index="1">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80"
+                alt="img3" data-index="2">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=500&q=80"
+                alt="img4" data-index="3">
+            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=80"
+                alt="img5" data-index="4">
+        </div>
+    </div>
+
+    <!-- Main Editor Area -->
+    <div class="editor">
+        <div id="canvas-container">
+            <img id="main-image"
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80"
+                alt="Main">
+            <textarea id="text-overlay" rows="1">Your Text Here</textarea>
+        </div>
+    </div>
+
+    <!-- Right Panel: Text Controls & Effects -->
+    <div class="controls">
+        <div class="section-title">Text Controls</div>
+        <div class="control-group">
+            <label for="font-face">Font Face</label>
+            <select id="font-face">
+                <option value="Arial">Arial</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="font-size">Font Size</label>
+            <input type="number" id="font-size" min="12" max="72" value="24">
+        </div>
+        <div class="control-group">
+            <label for="text-align">Text Alignment</label>
+            <select id="text-align">
+                <option value="left">Left</option>
+                <option value="center" selected>Center</option>
+                <option value="right">Right</option>
+            </select>
+        </div>
+        <div class="section-title">Image Effects</div>
+        <div class="effects-list control-group">
+            <label><input type="checkbox" id="effect-blur"> Blur</label>
+            <label><input type="checkbox" id="effect-gray"> Grayscale</label>
+            <label><input type="checkbox" id="effect-invert"> Invert</label>
+            <label><input type="checkbox" id="effect-overlay"> Overlay</label>
+        </div>
+        <button id="apply-btn">Apply</button>
+    </div>
+
+    <script>
+        // Image selection
+        const imageList = document.querySelectorAll('.image-list img');
+        const mainImage = document.getElementById('main-image');
+        imageList.forEach(img => {
+            img.addEventListener('click', () => {
+                imageList.forEach(i => i.classList.remove('selected'));
+                img.classList.add('selected');
+                mainImage.src = img.src;
+            });
+        });
+        imageList[0].classList.add('selected'); // Default selection
+
+        // Text overlay controls
+        const textOverlay = document.getElementById('text-overlay');
+        const fontFace = document.getElementById('font-face');
+        const fontSize = document.getElementById('font-size');
+        const textAlign = document.getElementById('text-align');
+
+        function updateTextStyles() {
+            textOverlay.style.fontFamily = fontFace.value;
+            textOverlay.style.fontSize = fontSize.value + 'px';
+            textOverlay.style.textAlign = textAlign.value;
+        }
+        fontFace.addEventListener('change', updateTextStyles);
+        fontSize.addEventListener('input', updateTextStyles);
+        textAlign.addEventListener('change', updateTextStyles);
+
+        // Make text overlay draggable
+        let isDragging = false, offsetX = 0, offsetY = 0;
+        textOverlay.addEventListener('mousedown', function (e) {
+            isDragging = true;
+            offsetX = e.clientX - textOverlay.offsetLeft;
+            offsetY = e.clientY - textOverlay.offsetTop;
+            textOverlay.style.cursor = 'move';
+        });
+        document.addEventListener('mousemove', function (e) {
+            if (isDragging) {
+                let container = document.getElementById('canvas-container');
+                let x = e.clientX - offsetX;
+                let y = e.clientY - offsetY;
+                // Clamp within container
+                x = Math.max(0, Math.min(x, container.offsetWidth - textOverlay.offsetWidth));
+                y = Math.max(0, Math.min(y, container.offsetHeight - textOverlay.offsetHeight));
+                textOverlay.style.left = x + 'px';
+                textOverlay.style.top = y + 'px';
+                textOverlay.style.transform = 'none';
+            }
+        });
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+            textOverlay.style.cursor = 'text';
+        });
+
+        // Image effects
+        const effectBlur = document.getElementById('effect-blur');
+        const effectGray = document.getElementById('effect-gray');
+        const effectInvert = document.getElementById('effect-invert');
+        const effectOverlay = document.getElementById('effect-overlay');
+        const canvasContainer = document.getElementById('canvas-container');
+
+        function applyEffects() {
+            let filters = [];
+            if (effectBlur.checked) filters.push('blur(4px)');
+            if (effectGray.checked) filters.push('grayscale(100%)');
+            if (effectInvert.checked) filters.push('invert(100%)');
+            mainImage.style.filter = filters.join(' ');
+
+            // Overlay effect: add a semi-transparent layer
+            let overlay = canvasContainer.querySelector('.img-overlay');
+            if (effectOverlay.checked) {
+                if (!overlay) {
+                    overlay = document.createElement('div');
+                    overlay.className = 'img-overlay';
+                    overlay.style.position = 'absolute';
+                    overlay.style.top = '0';
+                    overlay.style.left = '0';
+                    overlay.style.width = '100%';
+                    overlay.style.height = '100%';
+                    overlay.style.background = 'rgba(0, 120, 215, 0.18)';
+                    overlay.style.pointerEvents = 'none';
+                    overlay.style.zIndex = '1';
+                    canvasContainer.appendChild(overlay);
+                }
+            } else {
+                if (overlay) overlay.remove();
+            }
+        }
+
+        document.getElementById('apply-btn').addEventListener('click', function () {
+            updateTextStyles();
+            applyEffects();
+        });
+
+        // Initial styles
+        updateTextStyles();
+        applyEffects();
+    </script>
+</body>
+
+</html>
