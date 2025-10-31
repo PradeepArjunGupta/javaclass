@@ -22,14 +22,12 @@ console.log(arr[i])
 */
 
 
-//practcie3
-/*
-const prompt= require("prompt-sync")();
-let n=parseInt(prompt("Enter the size of the array"));
-let arr=[];
-for(let i=0;i<n;i++){
-    let num=parseInt(prompt("Enter the value: "))
-    arr.push([num,num*num])
+
+const prompt = require("prompt-sync")();
+let n = parseInt(prompt("Enter the size of the array"));
+let arr = [];
+for (let i = 0; i < n; i++) {
+    let num = parseInt(prompt("Enter the value: "))
+    arr.push([num, num * num])
 }
 console.log(arr);
-*/
