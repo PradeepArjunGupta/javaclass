@@ -1,65 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>form fill</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nexon Delivery Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+        }
+        
+        /* Home Scene */
+        .home {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1.5s ease-in-out;
+        }
+        
+        .house {
+            width: 300px;
+            height: 200px;
+            background: #FF6347;
+            position: relative;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 50px;
+        }
+        
+        .roof {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid #8B4513;
+            position: absolute;
+            top: -100px;
+            left: 0;
+        }
+        
+        .door {
+            width: 60px;
+            height: 100px;
+            background: #8B4513;
+            position: absolute;
+            bottom: 0;
+            left: 120px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .window {
+            width: 50px;
+            height: 50px;
+            background: #87CEEB;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            border-radius: 5px;
+        }
+        
+        .window:nth-child(2) {
+            left: 200px;
+        }
+        
+        .lawn {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: #32CD32;
+        }
+        
+        /* Road */
+        .road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .road-line {
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(
+                to right,
+                white,
+                white 20px,
+                transparent 20px,
+                transparent 40px
+            );
+        }
+        
+        /* Car Scene */
+        .car-scene {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 1.5s ease-in-out;
+        }
+        
+        .car {
+            width: 400px;
+            height: 150px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .car-body {
+            width: 100%;
+            height: 100%;
+            background: #1a2a6c;
+            border-radius: 20px 20px 10px 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .car-top {
+            width: 80%;
+            height: 60px;
+            background: #1a2a6c;
+            position: absolute;
+            top: -40px;
+            left: 10%;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .window-front {
+            width: 45%;
+            height: 40px;
+            background: #87CEEB;
+            position: absolute;
+            top: -30px;
+            left: 10%;
+            border-radius: 10px 0 0 0;
+        }
+        
+        .window-back {
+            width: 45%;
+            height: 40px;
+            background: #87CEEB;
+            position: absolute;
+            top: -30px;
+            right: 10%;
+            border-radius: 0 10px 0 0;
+        }
+        
+        .wheel {
+            width: 60px;
+            height: 60px;
+            background: #222;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -15px;
+            border: 5px solid #444;
+        }
+        
+        .wheel-front {
+            left: 50px;
+        }
+        
+        .wheel-back {
+            right: 50px;
+        }
+        
+        .wheel-detail {
+            width: 30px;
+            height: 30px;
+            background: #555;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Branding */
+        .branding {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .nexon {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFD700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+        }
+        
+        /* Delivery Text */
+        .delivery-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        /* Controls */
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: #fdbb2d;
+            color: #1a2a6c;
+            transform: translateY(-3px);
+        }
+        
+        /* Animation Classes */
+        .home.move-out {
+            transform: translateX(-100%);
+        }
+        
+        .car-scene.move-in {
+            transform: translateX(0);
+        }
+        
+        .show-text {
+            opacity: 1;
+        }
+        
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .cloud-1 {
+            width: 80px;
+            height: 40px;
+            top: 50px;
+            left: 10%;
+            animation: float 20s linear infinite;
+        }
+        
+        .cloud-2 {
+            width: 100px;
+            height: 50px;
+            top: 100px;
+            left: 40%;
+            animation: float 25s linear infinite;
+        }
+        
+        .cloud-3 {
+            width: 70px;
+            height: 35px;
+            top: 150px;
+            left: 70%;
+            animation: float 18s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateX(-100px);
+            }
+            100% {
+                transform: translateX(1000px);
+            }
+        }
+        
+        /* Sun */
+        .sun {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            top: 50px;
+            right: 80px;
+            box-shadow: 0 0 40px #FFA500;
+        }
+    </style>
 </head>
 <body>
-    <form>
-    <fieldset>
-        <legend>Registration fill</legend>
-        <label for="Name">Name:</label>
-        <input type="text" id="Name" required><br>
-        <label for="email">Email</label>
-        <input type="email" id="Email" required><br>
-        <label for="password">password</label>
-        <input type="password" id="pass" required><br>
-        <label for="Age">Age</label>
-        <input type="number" id="Age" min="16" max="60"><br>
-        <label for="LinkedIn">LinkedIn urls</label>
-        <input type="url" id="LinkedIn"><br>
-        <label for="job">Are u fresher?</label>
-        <input type="checkbox" id="job"><br>
-        <label for="expert">Are u expert</label>
-        <input type="checkbox" id="expert"><br>
-        <label for="Gender">Gender:</label>
-        <label for="male">Male</label>
-        <input type="radio" id="Male">
-        <label for="Female">Female</label>
-        <input type="radio" id="Female"><br>
-        <label for="DOB">DOB:</label>
-        <input type="date" id="DOB"><br>
-        <label for="state">Choose state:</label>
-        <select id="state">
-            <option value="">select below</option>
-            <option value="Uttar">up</option>
-            <option value="madhya">mp</option>
-            <option value="Karnataka">Karnataka</option>
-            <option value="Rajasthan">Rajasthan</option>
-            <option value="bihar">bihar</option>
-            <option value="otherrs">otherrs</option>
-        </select><br>
-        <!--data list-->
-        <label for="Degree">Degree</label>
-        <input list="course" name="" id="Degree">
-        <datalist id="course">
-            <option value="BCA"></option>
-            <option value="M-tech"></option>
-            <option value="B-tech"></option>
-            <option value="LLB"></option>
-            <option value="otherrs"></option>
-        </datalist>
-        <br>
-        <label for="image">upload file</label>
-        <input type="file"><br>
-        <br>
-        <label for="feedback">FeedBack</label> <br>
-        <textarea  cols="50" rows="5"></textarea>
-            <br>
-        <button>submit</button>
-    </fieldset>
-    </form>
+    <div class="container">
+        <div class="branding">
+            <div class="nexon">Nexon</div>
+            <div class="tagline">Electric SUV</div>
+        </div>
+        
+        <div class="scene">
+            <!-- Home Scene -->
+            <div class="home" id="homeScene">
+                <div class="house">
+                    <div class="roof"></div>
+                    <div class="door"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+                </div>
+                <div class="lawn"></div>
+                <div class="road">
+                    <div class="road-line"></div>
+                </div>
+                
+                <!-- Clouds -->
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+                
+                <!-- Sun -->
+                <div class="sun"></div>
+            </div>
+            
+            <!-- Car Scene -->
+            <div class="car-scene" id="carScene">
+                <div class="car">
+                    <div class="car-body">
+                        <div class="car-top"></div>
+                        <div class="window-front"></div>
+                        <div class="window-back"></div>
+                        <div class="wheel wheel-front">
+                            <div class="wheel-detail"></div>
+                        </div>
+                        <div class="wheel wheel-back">
+                            <div class="wheel-detail"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="road">
+                    <div class="road-line"></div>
+                </div>
+                
+                <!-- Clouds -->
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+                
+                <!-- Sun -->
+                <div class="sun"></div>
+            </div>
+        </div>
+        
+        <div class="delivery-text" id="deliveryText">Your Nexon Has Been Delivered!</div>
+        
+        <div class="controls">
+            <button id="startBtn">Start Animation</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeScene = document.getElementById('homeScene');
+            const carScene = document.getElementById('carScene');
+            const deliveryText = document.getElementById('deliveryText');
+            const startBtn = document.getElementById('startBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            startBtn.addEventListener('click', startAnimation);
+            resetBtn.addEventListener('click', resetAnimation);
+            
+            function startAnimation() {
+                // Move home scene out
+                homeScene.classList.add('move-out');
+                
+                // Move car scene in after a delay
+                setTimeout(() => {
+                    carScene.classList.add('move-in');
+                }, 800);
+                
+                // Show delivery text after another delay
+                setTimeout(() => {
+                    deliveryText.classList.add('show-text');
+                }, 2000);
+            }
+            
+            function resetAnimation() {
+                homeScene.classList.remove('move-out');
+                carScene.classList.remove('move-in');
+                deliveryText.classList.remove('show-text');
+            }
+        });
+    </script>
 </body>
 </html>
